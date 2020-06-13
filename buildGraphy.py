@@ -39,6 +39,9 @@ class QAGraph:
         self.disease_to_medical = []           # 疾病与药品关系   TODO
 
         self.readData()     # 读取数据
+        # with open("data/disease.csv", "w", encoding="utf-8") as file:
+        #     for item in self.diseaseSet:
+        #         file.write(item+"\n")
 
     def readData(self):
         """
@@ -259,5 +262,5 @@ def createGraph():
 if __name__ == "__main__":
     g = QAGraph()
     # g.buildNodes()
-    g.buildLink()
+    # g.buildLink()
     # g.cleanLinks()

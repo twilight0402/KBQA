@@ -9,6 +9,9 @@ class AnswerSearching:
         if sqls is None:
             return None
         intention = sqls["intention"]
+        if sqls.get("sql") is None:
+            return "这题我不会啊， 请换一种方式提问"
+
         sqlList = sqls["sql"]
 
         res = {"intention": intention, "result": []}
@@ -65,7 +68,7 @@ class AnswerSearching:
             answer = f"{res_dict[0]}的症状有：{','.join(res_dict[1])}"
 
         elif intention == "query_cureway":
-            res_tuple = self.parsedict(result, "d.name", "n.name")   # todo
+            res_tuple = self.parsedict(result, "d.name", "n.name")
             answer = f"得了{res_tuple[0]}可服用：{','.join(res_tuple[1])}"
 
         elif intention == "query_period":
@@ -73,7 +76,7 @@ class AnswerSearching:
             answer = f"{res_tuple[0]}的治疗周期为：{','.join(res_tuple[1])}"
 
         elif intention == "query_rate":
-            res_tuple = self.parsedict(result, "d.name", "s.cureRate")
+            res_tuple = self.parsedict(result, "d.name", "d.cureRate")
             answer = f"{res_tuple[0]}的治愈率为：{','.join(res_tuple[1])}"
 
         elif intention == "query_checklist":
@@ -91,8 +94,8 @@ class AnswerSearching:
                 answer = f"{res_tuple[0]}可以去{depart_desc}"
 
         elif intention == "query_disease":
-            res_tuple = self.parsedict(result, "d.name")
-            answer = f"{res_tuple[0]}"
+            res_list = self.parsedict(result, "d.name")
+            answer = f"可能的疾病有：{','.join(res_list)}"
 
         elif intention == "disease_describe":
             res_tuple = self.parsedict(result, "d.name", "d.baseinfo")

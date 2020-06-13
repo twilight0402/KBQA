@@ -2,17 +2,17 @@ import torch
 import torch.nn as nn
 
 
-class Classification(nn.Module):
+class Classification_LSTM(nn.Module):
     """
-    多层 lstm + linear
+    多层 LSTM + linear
     """
     def __init__(
         self,
         vocab_size,         # 词表的长度（总单词数）， （词向量的数量）
         output_dim,         # 分类类别数
-        n_layers=2,         # lstm 层数
+        n_layers=2,         # LSTM 层数
         pad_idx=1,          # <unk>=0  <pad>=1
-        hidden_dim=128,     # lstm 的hidden数量
+        hidden_dim=128,     # LSTM 的hidden数量
         embed_dim=300,      # 300维词向量
         dropout=0.1,
         bidirectional=False,
